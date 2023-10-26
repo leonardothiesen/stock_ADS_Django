@@ -1,0 +1,8 @@
+<h1>{{ product.name }}</h1>
+<h1>{{ product.price }}</h1>
+<h1>{{ product.category }}</h1>
+<img src="{{product.picture.url}}" alt="">
+
+<div class="card">
+    <a href="{% url 'delete-product' product.id %}" class="btn btn-danger">Excluir Produto</a>
+</div>
