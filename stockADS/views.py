@@ -7,6 +7,10 @@ def index (request):
     produtos = Products.objects.all()
     return render(request, 'pages/index.html', {'produtos':produtos})
 
+def fora_stock (request):
+    produtos = Products.objects.filter(in_stock=False)
+    return render(request, 'pages/index.html', {'produtos':produtos})
+
 def search_product (request):
     q = request.GET.get('q')
     produtos = Products.objects.filter(name__icontains=q)
@@ -48,3 +52,8 @@ def delete_product(request, id):
     product.delete()
     return redirect('home')
 
+def sell_product(request, id):
+    product = Products.objects.get(id=id)
+    product.qtd -= 1 
+    product.save()
+    return redirect('product-detail', id)
