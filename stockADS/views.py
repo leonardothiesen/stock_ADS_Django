@@ -4,17 +4,15 @@ from random import randint
 from datetime import datetime
 
 def index (request):
-
-    # from Product select *
     produtos = Products.objects.all()
-    #for produto in produtos:
-    #   print(f'{produto.name} + {produto.price}')
+    return render(request, 'pages/index.html', {'produtos':produtos})
 
-    # return HttpResponse('Estou no Django')
+def search_product (request):
+    q = request.GET.get('q')
+    produtos = Products.objects.filter(name__icontains=q)
     return render(request, 'pages/index.html', {'produtos':produtos})
 
 def add_product(request):
-
     if request.method == 'POST':
         name = request.POST.get('name')
         # name = request.POST['name']
@@ -35,7 +33,6 @@ def add_product(request):
         )
 
         return redirect('home')
-
 
     else:
         categories = Categories.objects.all()
