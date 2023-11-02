@@ -5,10 +5,14 @@ from datetime import datetime
 
 def index (request):
     produtos = Products.objects.all()
-    return render(request, 'pages/index.html', {'produtos':produtos})
+    return render(request, 'pages/index.html', {'produtos': produtos})
 
 def fora_stock (request):
     produtos = Products.objects.filter(in_stock=False)
+    return render(request, 'pages/index.html', {'produtos':produtos})
+
+def in_stock (request):
+    produtos = Products.objects.filter(in_stock=True)
     return render(request, 'pages/index.html', {'produtos':produtos})
 
 def search_product (request):

@@ -19,7 +19,9 @@
     <header>
         <nav class="navbar">
             <label class="">Stock ADS</label>
-            <li><a href="{% url 'fora-stock' %}">bgbg</a></li>
+            <li><a class="dropdown-item" href="{% url 'in-stock' %}">Em estoque</a></li>
+            <li><a class="dropdown-item" href="{% url 'fora-stock' %}">Sem estoque</a></li>
+            <!-- <li><a class="dropdown-item" href="{% url 'home' %}"></a>Estoque total</li> -->
             <form action="{% url 'search-product' %}">
                 <input type="search" name="q">
                 <button>Buscar</button>
@@ -41,16 +43,15 @@
             </tr>
         </thead>
         <tbody>
-
             {% for produto in produtos %}
-            <tr>
-                <td>{{ produto.cod}}</td>
-                <td>
-                    <a href="{% url 'product-detail' produto.id %}">{{ produto.name }}</a>
-                </td>
-                <td>{{ produto.price }}</td>
-                <td>{{ produto.qtd }}</td>
-            </tr>
+                <tr>
+                    <td>{{ produto.cod }}</td>
+                    <td>
+                        <a href="{% url 'product-detail' produto.id %}">{{ produto.name }}</a>
+                    </td>
+                    <td>{{ produto.price }}</td>
+                    <td>{{ produto.qtd }}</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

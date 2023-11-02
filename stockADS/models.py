@@ -13,16 +13,7 @@ class Categories(models.Model):
 
 
 class Products(models.Model):
-
-    # itens = [
-    #     ('1', 'P'),
-    #     ('2', 'M'),
-    #     ('3', 'G'),
-    #     ('4', 'GG'),
-    # ]
-    # size = models.CharField(choices=itens, max_length=255 )
-
-
+    
     name = models.CharField(max_length=255)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE) 
     picture = models.ImageField(blank=False)
