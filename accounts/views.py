@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
+from django.contrib.auth.models import User
 
 
 def user_login(request):
@@ -24,24 +25,31 @@ def user_login(request):
 
 def tela_cadastro(request):
     if request.method == 'POST':
-        # Obtenha os dados do formulário
-        usuario = request.POST.get('usuario')
+        # os nomes dentro dos parenteses, precisam ser os do .html
+        user = request.POST.get('usuario')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        repeat_password = request.POST.get('repeat_password')
+        passrordConfim = request.POST.get('repeat_password')
 
-        # Verifique se as senhas coincidem
-        if password == repeat_password:
-            # Crie um novo usuário no banco de dados
-            novo_usuario = Usuario(usuario=usuario, email=email, password=password)
-            novo_usuario.save()
+        User.objects.create_user(username=user, email=email, password=password)
 
-            # Redirecione o usuário para alguma outra página, por exemplo, a página de login
-            return redirect('login')
-        else:
-            # Senhas não coincidem, você pode adicionar uma mensagem de erro
-            mensagem_erro = "As senhas não coincidem"
-            return render(request, 'tela_cadastro.html', {'mensagem_erro': mensagem_erro})
+        return redirect('login')
 
-    return render(request, 'pages/tela_cadastro.html')
 
+    else:
+        return render(request, 'pages/tela_cadastro.html')
+
+
+
+        # # Verifique se as senhas coincidem
+        # if password == repeat_password:
+        #     # Crie um novo usuário no banco de dados
+        #     novo_usuario = Usuario(usuario=usuario, email=email, password=password)
+        #     novo_usuario.save()
+
+        #     # Redirecione o usuário para alguma outra página, por exemplo, a página de login
+        #     return redirect('login')
+        # else:
+        #     # Senhas não coincidem, você pode adicionar uma mensagem de erro
+        #     mensagem_erro = "As senhas não coincidem"
+        #     return render(request, 'tela_cadastro.html', {'mensagem_erro': mensagem_erro})

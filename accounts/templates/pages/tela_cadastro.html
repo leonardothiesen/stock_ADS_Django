@@ -16,10 +16,10 @@
 
     <form action="" method="POST"> {% csrf_token %}
         <label for="usuario">Usuário:</label>
-        <input type="text" usuario="usuario" id="usuario">
+        <input type="text" name="usuario" id="usuario">
         <br>
         <label for="email">E-mail:</label>
-        <input type="text" email="email" id="email">
+        <input type="text" name="email" id="email">
         <br>
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password">
@@ -27,8 +27,7 @@
         <label for="repeat_password">Repita sua senha:</label>
         <input type="repeat_password" name="repeat_password" id="repeat_password">
         <br>
-
-        <button type="submit">ENTRAR</button>
+        <button type="submit">SALVAR</button>
     </form>
 
 </body>
