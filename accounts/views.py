@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
-from .models import Usuario
+
 
 def user_login(request):
 
@@ -43,5 +43,5 @@ def tela_cadastro(request):
             mensagem_erro = "As senhas não coincidem"
             return render(request, 'tela_cadastro.html', {'mensagem_erro': mensagem_erro})
 
-    return render(request, 'tela_cadastro.html')
+    return render(request, 'pages/tela_cadastro.html')
 
